@@ -16,7 +16,7 @@
 #clean:
 #	rm -f $(OBJS) $(TARGET)
 
-CXXINCFLAGS := -std=c++11
+CXXINCFLAGS := -std=c++11 -I /home/maran/eclipse/boost_1_62_0
 CXXFLAGS := -Wall -g $(CXXINCFLAGS)
 LDFLAGS := -lpthread
 SRC := $(wildcard *.cpp)

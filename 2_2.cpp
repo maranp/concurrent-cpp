@@ -7,6 +7,7 @@
 
 #include <thread>
 #include <iostream>
+#include <boost/lambda/lambda.hpp>
 
 class background_task {
 public:
@@ -37,6 +38,7 @@ private:
 struct thread_guard {
 	std::thread &t;
 
+
 	thread_guard(std::thread &tref) : t(tref) {}
 	thread_guard(const thread_guard &g) = delete;
 	thread_guard & operator=(thread_guard &g) = delete;
@@ -49,6 +51,12 @@ struct thread_guard {
 
 int main() {
 	int local_state = 0;
+
+    using namespace boost::lambda;
+    typedef std::istream_iterator<int> in;
+
+    std::for_each(
+        in(std::cin), in(), std::cout << (_1 * 3) << " " );
 
 	func my_func{local_state};
 	std::thread t4(my_func);
